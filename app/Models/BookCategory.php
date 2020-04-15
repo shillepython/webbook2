@@ -16,4 +16,5 @@ class BookCategory extends Model
           'parent_id',
           'description',
         ];
+
 }
