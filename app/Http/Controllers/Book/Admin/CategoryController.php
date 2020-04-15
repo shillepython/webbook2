@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Book\Admin;
 
+use App\Http\Requests\BookCategoryUpdateRequest;
 use App\Models\BookCategory;
 use Illuminate\Http\Request;
 
@@ -60,7 +61,7 @@ class CategoryController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(BookCategoryUpdateRequest $request, $id)
     {
         $item = BookCategory::find($id);
         if(empty($item)){
