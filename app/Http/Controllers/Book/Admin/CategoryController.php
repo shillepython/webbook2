@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Book\Admin;
 use App\Http\Requests\BookCategoryCreateRequest;
 use App\Http\Requests\BookCategoryUpdateRequest;
 use App\Models\BookCategory;
+use App\Repositories\BookCategoryRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -66,13 +67,21 @@ class CategoryController extends BaseController
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     * @param BookCategoryRepository $categoryRepository
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($id)
+    public function edit($id, BookCategoryRepository $categoryRepository)
     {
-        $item = BookCategory::findOrFail($id);
-        $categoryList = BookCategory::all();
+//        $item = BookCategory::findOrFail($id);
+//        $categoryList = BookCategory::all();
+
+        $item = $categoryRepository->getEdit($id);
+        if (empty($item)){
+            abort(404);
+        }
+
+        $categoryList = $categoryRepository->getForComboBox();
 
         return view('book.admin.categories.edit', compact('item', 'categoryList'));
     }
