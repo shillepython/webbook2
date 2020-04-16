@@ -14,11 +14,22 @@ class CategoryController extends BaseController
     /**
      * Display a listing of the resource.
      *
+     * @var BookCategoryRepository
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+    protected $bookCategoryRepository;
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->bookCategoryRepository = app(BookCategoryRepository::class);
+    }
+
     public function index()
     {
-        $paginator = BookCategory::paginate(15);
+//        $paginator = BookCategory::paginate(15);
+        $paginator = $this->bookCategoryRepository->getAllWithPaginate(5);
         return view('book.admin.categories.index', compact('paginator'));
     }
 
@@ -30,7 +41,7 @@ class CategoryController extends BaseController
     public function create()
     {
         $item = new BookCategory();
-        $categoryList = BookCategory::all();
+        $categoryList = $this->bookCategoryRepository->getForComboBox();
 
         return view('book.admin.categories.create', compact('item', 'categoryList'));
     }
@@ -71,17 +82,17 @@ class CategoryController extends BaseController
      * @param BookCategoryRepository $categoryRepository
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($id, BookCategoryRepository $categoryRepository)
+    public function edit($id)
     {
 //        $item = BookCategory::findOrFail($id);
 //        $categoryList = BookCategory::all();
 
-        $item = $categoryRepository->getEdit($id);
+        $item = $this->bookCategoryRepository->getEdit($id);
         if (empty($item)){
             abort(404);
         }
 
-        $categoryList = $categoryRepository->getForComboBox();
+        $categoryList = $this->bookCategoryRepository->getForComboBox();
 
         return view('book.admin.categories.edit', compact('item', 'categoryList'));
     }
@@ -95,16 +106,19 @@ class CategoryController extends BaseController
      */
     public function update(BookCategoryUpdateRequest $request, $id)
     {
-        $item = BookCategory::find($id);
+        $item = $this->bookCategoryRepository->getEdit($id);
         if(empty($item)){
             return back()
                 ->withErrors(['msg' => "Запись с id: [{$id}] не найдена"])
                 ->withInput();
         }
+
         $data = $request->all();
+
         if (empty($data['slug'])){
             $data['slug'] = Str::slug($data['title']);
         }
+
         $result = $item->update($data);
 
         if ($result){

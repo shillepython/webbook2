@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\BookCategory as Model;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 
 /**
@@ -39,6 +40,44 @@ class BookCategoryRepository extends CoreRepository
      */
     public function getForComboBox()
     {
-        return $this->startConditions()->all();
+        $columns = implode(', ', [
+            'id',
+            'CONCAT (id, ". ", title) AS id_title'
+        ]);
+/*
+        $result[] = $this->startConditions()->all();
+        $result[] = $this
+            ->startConditions()
+            ->select('book_categories.*',
+                \DB::raw('CONCAT (id, ". ", title) AS id_title'))
+            ->toBase()
+            ->get();
+ */
+        $result = $this
+            ->startConditions()
+            ->selectRaw($columns)
+            ->toBase()
+            ->get();
+
+        return $result;
+    }
+
+    /**
+     * Получить категории для вывода пгинатором
+     *
+     * @param int|null $perPage
+     *
+     * @return LengthAwarePaginator
+     */
+    public function getAllWithPaginate($perPage = null)
+    {
+        $columns = ['id', 'title', 'parent_id'];
+
+        $result = $this
+            ->startConditions()
+            ->select($columns)
+            ->paginate($perPage);
+
+        return $result;
     }
 }
