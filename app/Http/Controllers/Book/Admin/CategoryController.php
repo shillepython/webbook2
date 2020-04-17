@@ -29,7 +29,7 @@ class CategoryController extends BaseController
     public function index()
     {
 //        $paginator = BookCategory::paginate(15);
-        $paginator = $this->bookCategoryRepository->getAllWithPaginate(5);
+        $paginator = $this->bookCategoryRepository->getAllWithPaginate(12);
         return view('book.admin.categories.index', compact('paginator'));
     }
 

@@ -44,15 +44,7 @@ class BookCategoryRepository extends CoreRepository
             'id',
             'CONCAT (id, ". ", title) AS id_title'
         ]);
-/*
-        $result[] = $this->startConditions()->all();
-        $result[] = $this
-            ->startConditions()
-            ->select('book_categories.*',
-                \DB::raw('CONCAT (id, ". ", title) AS id_title'))
-            ->toBase()
-            ->get();
- */
+
         $result = $this
             ->startConditions()
             ->selectRaw($columns)

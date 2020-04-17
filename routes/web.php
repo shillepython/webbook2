@@ -12,6 +12,7 @@ Route::group(['namespace' => 'Book'], function (){
     Route::resource('book', 'PostController')->names('Book.book');
 });
 
+//Админка
 $groupData = [
   'namespace'   => 'Book\Admin',
   'prefix'      => 'admin/book',
@@ -19,9 +20,15 @@ $groupData = [
 
 Route::group($groupData, function (){
     $methods = ['index', 'edit', 'update', 'create', 'store'];
+//    BookCategory
     Route::resource('categories', 'CategoryController')
         ->only($methods)
         ->names('book.admin.categories');
+
+//    BookPost
+    Route::resource('posts', 'PostController')
+        ->except(['show'])
+        ->names('book.admin.posts');
 });
 
 
