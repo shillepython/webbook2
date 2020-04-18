@@ -49,18 +49,12 @@ class CategoryController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(BookCategoryCreateRequest $request)
     {
         $data = $request->input();
-        if (empty($data['slug'])){
-            $data['slug'] = Str::slug($data['title']);
-        }
-
-//        $item = new BookCategory($data);
-//        $item->save();
 
         $item = (new BookCategory())->create($data);
 
@@ -100,8 +94,9 @@ class CategoryController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param BookCategoryUpdateRequest $request
      * @param  int  $id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(BookCategoryUpdateRequest $request, $id)

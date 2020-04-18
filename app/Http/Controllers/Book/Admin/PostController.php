@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Book\Admin;
 
+use App\Http\Requests\BookPostCreateReques;
+use App\Http\Requests\BookPostUpdateRequest;
+use App\Models\BookPost;
 use App\Repositories\BookCategoryRepository;
 use App\Repositories\BookPostRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PostController extends BaseController
@@ -41,22 +45,36 @@ class PostController extends BaseController
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        dd(__METHOD__);
+        $item = new BookPost();
+        $categoryList = $this->bookCategoryRepository->getForComboBox();
+
+        return view('book.admin.posts.edit', compact('item', 'categoryList'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(BookPostCreateReques $request)
     {
-        dd(__METHOD__);
+        $data = $request->input();
+        $item = (new BookPost())->create($data);
+
+        if ($item){
+            return redirect()
+                ->route('book.admin.posts.edit', $item->id)
+                ->with(['success' => 'Успешно сохранено']);
+        }else{
+            return back()
+                ->withErrors(['msg' => 'Ошибка сохранения'])
+                ->withInput();
+        }
     }
 
     /**
@@ -79,13 +97,32 @@ class PostController extends BaseController
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  BookPostUpdateRequest $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(BookPostUpdateRequest $request, $id)
     {
-        dd(__METHOD__,$request->all(), $id);
+        $item = $this->bookPostRepository->getEdit($id);
+        if(empty($item)){
+            return back()
+                ->withErrors(['msg' => "Запись с id: [{$id}] не найдена"])
+                ->withInput();
+        }
+
+        $data = $request->all();
+
+        $result = $item->update($data);
+
+        if ($result){
+            return redirect()
+                ->route('book.admin.posts.edit', $item->id)
+                ->with(['success' => 'Успешно сохранено']);
+        }else{
+            return back()
+                ->withErrors(['msg' => 'Ошибка сохранения'])
+                ->withInput();
+        }
     }
 
     /**
