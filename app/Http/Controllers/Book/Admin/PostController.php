@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Book\Admin;
 
 use App\Http\Requests\BookPostCreateReques;
+use App\Http\Requests\BookPostRestoreRequest;
 use App\Http\Requests\BookPostUpdateRequest;
 use App\Models\BookPost;
 use App\Repositories\BookCategoryRepository;
@@ -129,10 +130,33 @@ class PostController extends BaseController
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {
-        dd(__METHOD__, $id);
+        $result = BookPost::destroy($id);
+
+        if ($result){
+            return redirect()
+                ->route('book.admin.posts.index')
+                ->with(['success' =>
+                    "Книга с ID: $id удалена",
+                    'restore'    => $id]
+                    );
+        }else{
+            return back()->withErrors(['msg' => 'Ошибка удаления']);
+        }
+    }
+    public function restore($id)
+    {
+        $restore = $this->bookPostRepository->getTrashed($id)->restore();
+
+        if ($restore) {
+            return redirect()
+                ->route('book.admin.posts.edit', $id)
+                ->with(['success' => "Книга с ID: $id восстановлена"]);
+        }else{
+            return back()->withErrors(['msg' => 'Ошибка восстановления']);
+        }
     }
 }

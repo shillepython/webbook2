@@ -9,30 +9,6 @@ class BookPostObserver
 {
 
     /**
-     * Отработка ПЕРЕД создание записи.
-     *
-     * @param  BookPost  $bookPost
-     */
-    public function creating(BookPost $bookPost)
-    {
-        $this->setPublishedAt($bookPost);
-        $this->setSlug($bookPost);
-        $this->setHtml($bookPost);
-        $this->setUser($bookPost);
-    }
-
-    /**
-     * Отработка ПЕРЕД создание записи.
-     *
-     * @param  BookPost  $bookPost
-     */
-    public function updating(BookPost $bookPost)
-    {
-        $this->setPublishedAt($bookPost);
-        $this->setSlug($bookPost);
-    }
-
-    /**
      * Если дата публикации не установлена и приходит флаг - Опубликовано,
      * Меняем дату публикации на текущую.
      *
@@ -46,6 +22,7 @@ class BookPostObserver
         }
     }
 
+
     /**
      * Если поле slug не заполнено то образуем его из поля Title.
      *
@@ -57,6 +34,7 @@ class BookPostObserver
             $bookPost->slug = \Str::slug($bookPost->title);
         }
     }
+
 
     /**
      * Установка значение полю content_html относитьльно content_raw
@@ -81,6 +59,20 @@ class BookPostObserver
         $bookPost->user_id = auth()->id() ?? BookPost::UNKNOWN_USER;
     }
 
+
+    /**
+     * Отработка ПЕРЕД создание записи.
+     *
+     * @param  BookPost  $bookPost
+     */
+    public function creating(BookPost $bookPost)
+    {
+        $this->setPublishedAt($bookPost);
+        $this->setSlug($bookPost);
+        $this->setHtml($bookPost);
+        $this->setUser($bookPost);
+    }
+
     /**
      * Handle the book post "created" event.
      *
@@ -92,6 +84,18 @@ class BookPostObserver
         //
     }
 
+
+    /**
+     * Отработка ПЕРЕД создание записи.
+     *
+     * @param  BookPost  $bookPost
+     */
+    public function updating(BookPost $bookPost)
+    {
+        $this->setPublishedAt($bookPost);
+        $this->setSlug($bookPost);
+    }
+
     /**
      * Handle the book post "updated" event.
      *
@@ -101,6 +105,18 @@ class BookPostObserver
     public function updated(BookPost $bookPost)
     {
         //
+    }
+
+
+    /**
+     * Handle the book post "deleted" event.
+     *
+     * @param  BookPost  $bookPost
+     * @return void
+     */
+    public function deleting(BookPost $bookPost)
+    {
+        //return false;
     }
 
     /**

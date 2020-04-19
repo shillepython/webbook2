@@ -24,8 +24,8 @@ class BookPostCreateReques extends FormRequest
     public function rules()
     {
         return [
-            'title'       => 'required|min:5|max:200|unique:book_posts',
-            'slug'        => 'max:200',
+            'title'       => 'required|min:5|max:100|unique:book_posts',
+            'slug'        => 'max:100|unique:book_posts',
             'content_raw'   => 'required|string|min:5|max:10000',
             'category_id'   => 'required|integer|exists:book_categories,id',
         ];
@@ -45,6 +45,7 @@ class BookPostCreateReques extends FormRequest
             'title.unique'       => 'Заголовок книги должен быть уникальным',
 
             'slug.max'       => 'Максимальная длинна идентификатор книги [:max] символов',
+            'slug.unique'       => 'Идентификатор должен быть уникальным',
 
             'content_raw.required'   => 'Поле для содержания книги обязательное для заполнения',
             'content_raw.string'   => 'Содержание книги должно быть текстом',

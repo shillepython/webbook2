@@ -22,6 +22,9 @@
                     <span aria-hidden="true">x</span>
                 </button>
                 {{ session()->get('success') }}
+                @if(session('restore'))
+                    <a href='{{ route('book.admin.posts.restore',session()->get('restore')) }}'>Восстановить книгу</a>
+                @endif
             </div>
         </div>
     </div>

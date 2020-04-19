@@ -19,13 +19,14 @@ $groupData = [
 ];
 
 Route::group($groupData, function (){
-    $methods = ['index', 'edit', 'update', 'create', 'store'];
+    $methods = ['index', 'edit', 'update', 'create', 'store', 'restored'];
 //    BookCategory
     Route::resource('categories', 'CategoryController')
         ->only($methods)
         ->names('book.admin.categories');
 
 //    BookPost
+    Route::get('posts/{post}/restore', 'PostController@restore')->name('book.admin.posts.restore');
     Route::resource('posts', 'PostController')
         ->except(['show'])
         ->names('book.admin.posts');

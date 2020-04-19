@@ -12,6 +12,7 @@
 {{--        @endif--}}
         <div class="row justify-content-center mb-3">
             <div class="col-md-12">
+                @include('book.admin.posts.inc.result_messages')
                 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
                     <a href="{{ route('book.admin.posts.create') }}" class="btn btn-primary">Добавить книгу</a>
                 </nav>

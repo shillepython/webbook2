@@ -59,4 +59,9 @@ class BookPostRepository extends CoreRepository
     {
         return $this->startConditions()->find($id);
     }
+
+    public function getTrashed($id)
+    {
+        return $this->startConditions()->withTrashed()->find($id);
+    }
 }
