@@ -49,7 +49,7 @@
         </div>
         @if($paginator->total() > $paginator->count())
             <div class="row justify-content-center mb-3">
-                <div class="col-md-12">
+                <div class="col-md-8">
                     <div class="card">
                         <div class="card-body">
                             {{ $paginator->links() }}

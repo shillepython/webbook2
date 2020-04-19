@@ -18,6 +18,7 @@ class CategoryController extends BaseController
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
+
     protected $bookCategoryRepository;
     public function __construct()
     {
@@ -28,8 +29,8 @@ class CategoryController extends BaseController
 
     public function index()
     {
-//        $paginator = BookCategory::paginate(15);
-        $paginator = $this->bookCategoryRepository->getAllWithPaginate(25);
+        $paginator = BookCategory::paginate(15);
+        //$paginator = $this->bookCategoryRepository->getAllWithPaginate(25);
         return view('book.admin.categories.index', compact('paginator'));
     }
 

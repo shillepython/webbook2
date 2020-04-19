@@ -33,8 +33,10 @@ class BookPostRepository extends CoreRepository
             'id',
             'title',
             'slug',
+            'excerpt',
             'is_published',
             'published_at',
+            'created_at',
             'user_id',
             'category_id'
         ];
@@ -44,7 +46,7 @@ class BookPostRepository extends CoreRepository
             ->select($columns)
             ->orderBy('id', 'DESC')
             ->with(['category:id,title','user:id,name'])
-            ->paginate(25);
+            ->paginate(10);
 
         return $result;
     }
@@ -63,5 +65,14 @@ class BookPostRepository extends CoreRepository
     public function getTrashed($id)
     {
         return $this->startConditions()->withTrashed()->find($id);
+    }
+
+    public function filter($bookQuery,$request){
+        if($request->has('title')){
+            $bookQuery->where('title', 'like', "%$request->title%");
+        }
+        if($request->has('parent_id')){
+            $bookQuery->where('category_id', 'like', "%$request->parent_id%");
+        }
     }
 }

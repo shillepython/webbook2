@@ -36,4 +36,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function user()
+    {
+        // Книга пренадлежит пользователю.
+        return $this->belongsTo(BookPost::class);
+    }
 }

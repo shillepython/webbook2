@@ -39,7 +39,7 @@ class PostController extends BaseController
      */
     public function index()
     {
-        $paginator = $this->bookPostRepository->getAllWithPaginate();
+        $paginator = BookPost::paginate(15);
         return view('book.admin.posts.index', compact('paginator'));
     }
 

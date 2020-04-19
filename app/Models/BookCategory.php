@@ -48,6 +48,7 @@ class BookCategory extends Model
             ?? ($this->isRoot()
                 ? 'Корень'
                 : '???');
+
         return $title;
     }
 
@@ -58,6 +59,5 @@ class BookCategory extends Model
     {
         return $this->id === BookCategory::ROOT;
     }
-
 
 }

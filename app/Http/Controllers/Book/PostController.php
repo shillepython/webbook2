@@ -3,23 +3,49 @@
 namespace App\Http\Controllers\Book;
 
 
+use App\Http\Requests\BookPostFilterRequest;
 use App\Models\BookPost;
-use App\Repositories\BookPostRepository;
+use App\Models\User;
 use App\Repositories\BookCategoryRepository;
+use App\Repositories\BookPostRepository;
 use Illuminate\Http\Request;
 
 class PostController extends BaseController
 {
     /**
+     * @var $bookPostRepository
+     */
+    private $bookPostRepository;
+    /**
+     * @var $bookCategoryRepository
+     */
+    private $bookCategoryRepository;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->bookPostRepository = app(BookPostRepository::class);
+        $this->bookCategoryRepository = app(BookCategoryRepository::class);
+    }
+
+
+    /**
      * Display a listing of the resource.
      *
+     * @param BookPostFilterRequest $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(BookPostFilterRequest $request)
     {
-        $items = BookPost::all();
-        return view('book.posts.index', compact('items'));
+        $bookQuery = BookPost::query();
+        $this->bookPostRepository->filter($bookQuery,$request);
+
+        $paginator = $bookQuery->paginate(10)->withPath("?" . $request->getQueryString());
+        $categoryList = $this->bookCategoryRepository->getForComboBox();
+
+        return view('book.posts.index', compact( 'categoryList', 'paginator'));
     }
+
 
     /**
      * Show the form for creating a new resource.
