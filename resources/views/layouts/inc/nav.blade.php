@@ -11,7 +11,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('book') }}">All book</a>
             </li>
-            @if(Auth::user()->isAdmin())
+            @if(!empty(Auth::user()) && Auth::user()->isAdmin())
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('book.admin.posts.index') }}">Post Admin</a>
             </li>
