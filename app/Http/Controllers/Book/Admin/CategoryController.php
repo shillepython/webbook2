@@ -62,10 +62,10 @@ class CategoryController extends BaseController
         if ($item){
             return redirect()
                 ->route('book.admin.categories.edit', [$item->id])
-                ->with(['success' => 'Успешно сохранено']);
+                ->with(['success' => 'saved successfully']);
         } else {
             return back()
-                ->withErrors(['msg' => 'Ошибка сохранения'])
+                ->withErrors(['msg' => 'Save error'])
                 ->withInput();
         }
     }
@@ -105,7 +105,7 @@ class CategoryController extends BaseController
         $item = $this->bookCategoryRepository->getEdit($id);
         if(empty($item)){
             return back()
-                ->withErrors(['msg' => "Запись с id: [{$id}] не найдена"])
+                ->withErrors(['msg' => "Record with id: [{$id}] not found"])
                 ->withInput();
         }
 
@@ -120,10 +120,10 @@ class CategoryController extends BaseController
         if ($result){
             return redirect()
                 ->route('book.admin.categories.edit', $item->id)
-                ->with(['success' => 'Успешно сохранено']);
+                ->with(['success' => 'saved successfully']);
         }else{
             return back()
-                ->withErrors(['msg' => 'Ошибка сохранения'])
+                ->withErrors(['msg' => 'Save error'])
                 ->withInput();
         }
     }

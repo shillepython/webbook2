@@ -5,7 +5,7 @@
 @section('content')
     @php /* @var \App\Models\BookPost $item */ @endphp
 
-    <form action="{{ route('book.admin.posts.store', $item->id) }}" method="post">
+    <form action="{{ route('book.admin.posts.store', $item->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="container">
             @php

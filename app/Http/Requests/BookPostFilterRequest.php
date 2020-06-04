@@ -24,27 +24,25 @@ class BookPostFilterRequest extends FormRequest
     public function rules()
     {
         return [
-//            'price_before' =>  'integer|min:0|max:30',
-//            'price_after' =>  'integer|min:0|max:30',
+            'price_before' =>  'integer|min:0',
+            'price_after' =>  'integer|min:0',
 
             'title'     =>  'max:150',
         ];
     }
 
-    public function messages()
-    {
-        return [
-            'title.max'      => 'Максимальная длинна поля заголовк 150 символов',
-
-            /*
-            'price_before.integer'      => 'Поле цена(от) должно быть заполнено цыфрами',
-            'price_before.min'      => 'Минимальная длинна поля цена(от) 0 символов',
-            'price_before.max'      => 'Максимальная длинна поля цена(от) 150 символов',
-
-            'price_after.integer'      => 'Поле цена(до) должно быть заполнено цыфрами',
-            'price_after.min'      => 'Минимальная длинна поля цена(до) 0 символов',
-            'price_after.max'      => 'Максимальная длинна поля цена(до) 150 символов',
-            */
-        ];
-    }
+//    public function messages()
+//    {
+//        return [
+//            'title.max'      => 'Максимальная длинна поля заголовк 150 символов',
+//
+//            'price_before.integer'      => 'Поле цена(от) должно быть заполнено цыфрами',
+//            'price_before.min'      => 'Минимальная длинна поля цена(от) 0 символов',
+//            //'price_before.max'      => 'Максимальная длинна поля цена(от) 150 символов',
+//
+//            'price_after.integer'      => 'Поле цена(до) должно быть заполнено цыфрами',
+//            'price_after.min'      => 'Минимальная длинна поля цена(до) 0 символов',
+//            //'price_after.max'      => 'Максимальная длинна поля цена(до) 150 символов',
+//        ];
+//    }
 }

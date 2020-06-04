@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string                   $content_html
  * @property string                   $content_raw
  * @property string                   $published_at
+ * @property integer                  $price
  * @property boolean                  $is_published
  *
  * @property-read BookPost $parentCategory
@@ -36,6 +37,7 @@ class BookPost extends Model
             'content_raw',
             'parent_id',
             'is_published',
+            'price',
             'published_at',
         ];
 

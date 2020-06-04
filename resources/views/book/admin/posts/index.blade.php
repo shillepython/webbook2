@@ -14,7 +14,7 @@
             <div class="col-md-12">
                 @include('book.admin.posts.inc.result_messages')
                 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-                    <a href="{{ route('book.admin.posts.create') }}" class="btn btn-primary">Добавить книгу</a>
+                    <a href="{{ route('book.admin.posts.create') }}" class="btn btn-primary">Add book</a>
                 </nav>
                 <div class="card">
                     <div class="card-body">
@@ -22,10 +22,10 @@
                             <thead>
                             <tr>
                                 <td>#</td>
-                                <td>Автор</td>
-                                <td>Категория</td>
-                                <td>Заголовок</td>
-                                <td>Дата публикации</td>
+                                <td>Author</td>
+                                <td>Category/Genre</td>
+                                <td>Title</td>
+                                <td>Publication date</td>
                             </tr>
                             </thead>
                             <tbody>

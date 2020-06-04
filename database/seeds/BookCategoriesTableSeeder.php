@@ -14,15 +14,15 @@ class BookCategoriesTableSeeder extends Seeder
     {
         $categories = [];
 
-        $cName = 'Без категории';
+        $cName = 'No category';
         $categories[] = [
             'title'     => $cName,
             'slug'      => Str::slug($cName),
             'parent_id' => 0,
         ];
 
-        for ($i = 2; $i <= 11; $i++){
-            $cName = "Категория #".$i;
+        for ($i = 2; $i <= 4; $i++){
+            $cName = "Category #".$i;
             $parentId = ($i > 4) ? rand(1, 4) : 1;
 
             $categories[] = [

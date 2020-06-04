@@ -10,34 +10,36 @@
                         <div class="card-title"></div>
                         <ul class="nav nav-tabs pb-3" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#maindata" role="tab">Основные данные</a>
+                                <a class="nav-link active" data-toggle="tab" href="#maindata" role="tab">Main data</a>
                             </li>
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="maindata" role="tabpanel">
                                 <div class="form-group">
-                                    <label for="title">Заголовок</label>
+                                    <label for="title">Title</label>
                                     <input name="title" value="{{ $item->title }}"
                                            id="title"
                                            type="text"
                                            class="form-control"
                                            minlength="3"
-                                           required>
+                                           required
+                                           placeholder="Title the category">
                                 </div>
                                 <div class="form-group">
-                                    <label for="slug">Идентификатор</label>
+                                    <label for="slug">Identifier</label>
                                     <input name="slug" value="{{ $item->slug }}"
                                            id="slug"
                                            type="text"
-                                           class="form-control">
+                                           class="form-control"
+                                           placeholder="Identifier the category">
                                 </div>
                                 <div class="form-group">
-                                    <label for="parent_id">Родитель</label>
+                                    <label for="parent_id">Parent</label>
                                     <select name="parent_id" value="{{ $item->parent_id }}"
                                            id="parent_id"
                                            class="form-control"
-                                           placeholder="Выберете категорию"
-                                            required>
+                                           placeholder="Select category"
+                                            >
                                         @foreach($categoryList as $categoryOption)
                                             <option value="{{ $categoryOption->id }}"
                                                 @if($categoryOption->id == $item->parent_id) selected @elseif($categoryOption->id == $item->id) disabled @endif>
@@ -49,11 +51,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="description">Описание</label>
+                                    <label for="description">Description</label>
                                     <textarea name="description"
                                            id="description"
                                            class="form-control"
-                                           rows="3">{{ old('description', $item->description) }}</textarea>
+                                           rows="3"
+                                           placeholder="Description the category">{{ old('description', $item->description) }}</textarea>
                                 </div>
                             </div>
                         </div>

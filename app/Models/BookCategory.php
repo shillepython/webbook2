@@ -46,7 +46,7 @@ class BookCategory extends Model
     {
         $title = $this->parentCategory->title
             ?? ($this->isRoot()
-                ? 'Корень'
+                ? 'Root'
                 : '???');
 
         return $title;

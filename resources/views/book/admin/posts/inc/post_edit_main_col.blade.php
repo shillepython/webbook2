@@ -8,48 +8,54 @@
             <div class="card">
                 <div class="card-header">
                     @if($item->is_published)
-                        Опубликовано
+                        Published
                     @else
-                        Черновик
+                        Draft
                     @endif
                 </div>
                 <div class="card-body">
                     <div class="card-title"></div>
                     <ul class="nav nav-tabs pb-3" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#maindata" role="tab">Основные данные</a>
+                            <a class="nav-link active" data-toggle="tab" href="#maindata" role="tab">Main data</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#adddata" role="tab">Доп. данные</a>
+                            <a class="nav-link" data-toggle="tab" href="#adddata" role="tab">Extra data</a>
                         </li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="maindata" role="tabpanel">
                             <div class="form-group">
-                                <label for="title">Заголовок</label>
+                                <label for="title">Title</label>
                                 <input name="title" value="{{ $item->title }}"
                                        id="title"
                                        type="text"
                                        class="form-control"
                                        minlength="3"
                                        required
-                                       value="{{ old('title', $item->title) }}">
+                                       value="{{ old('title', $item->title) }}"
+                                       placeholder="Title the book">
                             </div>
                             <div class="form-group">
-                                <label for="content_raw">Cодержание книги</label>
+                                <label for="price">Price</label>
+                                <input type="text" name="price" class="js-range-slider" id="range_two" value="{{ $item->price }}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="content_raw">Book contents</label>
                                 <textarea name="content_raw"
                                           id="content_raw"
                                           class="form-control"
-                                          rows="5">{{ old('content_raw', $item->content_raw) }}</textarea>
+                                          rows="5"
+                                          placeholder="Contents the book">{{ old('content_raw', $item->content_raw) }}</textarea>
                             </div>
                         </div>
                         <div class="tab-pane" id="adddata" role="tabpanel">
                             <div class="form-group">
-                                <label for="category_id">Родитель</label>
+                                <label for="category_id">Parent</label>
                                 <select name="category_id" value="{{ $item->category_id }}"
                                         id="category_id"
                                         class="form-control"
-                                        placeholder="Выберете категорию"
+                                        placeholder="Select category"
                                         required>
                                     @foreach($categoryList as $categoryOption)
                                         <option value="{{ $categoryOption->id }}"
@@ -61,19 +67,21 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="slug">Идентификатор</label>
+                                <label for="slug">Identifier</label>
                                 <input name="slug" value="{{ $item->slug }}"
                                        id="slug"
                                        type="text"
-                                       class="form-control">
+                                       class="form-control"
+                                       placeholder="Identifier the book">
                             </div>
                             <div class="form-group">
-                                <label for="excerpt">Выдержка</label>
+                                <label for="excerpt">Excerpt</label>
                                 <textarea name="excerpt" value="{{ $item->excerpt }}"
                                        id="excerpt"
                                        type="text"
                                        class="form-control"
-                                       rows="3">{{ old('excerpt', $item->excerpt) }}</textarea>
+                                       rows="3"
+                                       placeholder="Excerpt the book">{{ old('excerpt', $item->excerpt) }}</textarea>
                             </div>
                             <div class="form-check">
                                 <input type="hidden" name="is_published" value="0">
@@ -81,7 +89,7 @@
                                        @if($item->is_published)
                                        checked="checked"
                                     @endif>
-                                <label class="form-check-label" for="is_published">Опубликовано</label>
+                                <label class="form-check-label" for="is_published">Posted by</label>
                             </div>
                         </div>
                     </div>

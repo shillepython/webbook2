@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 @include('book.admin.posts.inc.result_messages')
                 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-                    <a href="{{ route('book.admin.categories.create') }}" class="btn btn-primary">Добавить</a>
+                    <a href="{{ route('book.admin.categories.create') }}" class="btn btn-primary">Add category</a>
                 </nav>
                 <div class="card">
                     <div class="card-body">
@@ -16,8 +16,8 @@
                             <thead>
                                 <tr>
                                     <td>#</td>
-                                    <td>Категория</td>
-                                    <td>Родитель</td>
+                                    <td>Category</td>
+                                    <td>Parent</td>
                                 </tr>
                             </thead>
                             <tbody>

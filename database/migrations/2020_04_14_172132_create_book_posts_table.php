@@ -15,7 +15,6 @@ class CreateBookPostsTable extends Migration
     {
         Schema::create('book_posts', function (Blueprint $table) {
             $table->id();
-
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
 
@@ -24,11 +23,14 @@ class CreateBookPostsTable extends Migration
 
             $table->text('excerpt')->nullable();
 
-            $table->text('content_raw')->unique();
+            $table->text('content_raw');
             $table->text('content_html');
+            $table->text('images')->nullable();
 
             $table->boolean('is_published')->default(false);
             $table->timestamp('published_at')->nullable();
+
+            $table->integer('price');
 
             $table->timestamps();
             $table->softDeletes();

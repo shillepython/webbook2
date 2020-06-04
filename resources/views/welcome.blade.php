@@ -16,32 +16,36 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
-                <div class="container">
-                    <div class="carousel-caption text-left">
-                        <h1>Example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+                <img class="book-bg" src="{{ asset('image/book-bg.jpg') }}" alt="">
                 <div class="container">
                     <div class="carousel-caption">
-                        <h1>Another example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                        <h1>Best books on the market.</h1>
+                        <p>You can buy the latest books from us at the lowest prices.</p>
+                        <p><a class="btn btn-lg btn-primary" href="{{ route('Book.book.index') }}" role="button">Read
+                                more</a></p>
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
-                <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><rect width="100%" height="100%" fill="#777"/></svg>
+                <img class="book-bg" src="{{ asset('image/book-bg1.jpg') }}" alt="">
                 <div class="container">
-                    <div class="carousel-caption text-right">
-                        <h1>One more for good measure.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                    <div class="carousel-caption">
+                        <h1>Matt Ridley.</h1>
+                        <p>is a British journalist and businessman. Ridley is known for his work in science, the
+                            environment, and economics.</p>
+                        <p><a class="btn btn-lg btn-primary" href="{{ route('Book.book.index') }}" role="button">Read
+                                more</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="book-bg" src="{{ asset('image/book-bg2.jpg') }}" alt="">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Always the most interesting and cool books.</h1>
+                        <p>You have over 5,000 books and the highest quality book scanners.</p>
+                        <p><a class="btn btn-lg btn-primary" href="{{ route('Book.book.index') }}" role="button">Read
+                                more</a></p>
                     </div>
                 </div>
             </div>
@@ -66,21 +70,29 @@
         <!-- Three columns of text below the carousel -->
         <div class="row">
             <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-                <h2>Heading</h2>
-                <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
+                <img class="avatar mb-2" src="{{ asset('image/people/nick.png') }}" alt="">
+                <h2>Nick</h2>
+                <p>UX Designer living and working in Manchester, United Kingdom. I am currently working for the
+                    BBC in MediaCityUK working on a wide variety of digital services.
+                    From a young age I have been designing and building things that not only look nice but work well for
+                    the people using them.</p>
                 <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-                <h2>Heading</h2>
-                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
+                <img class="avatar mb-2" src="{{ asset('image/people/serafim.png') }}" alt="">
+                <h2>Serafim</h2>
+                <p>This is mostly to help me develop my craft and experiment with new technologies.
+                    Most recently, I launched Others Work a digital platform for designers and developers to share and
+                    submit their latest web projects. I also have an Online Print Shop where I sell most of my
+                    prints.</p>
                 <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
             <div class="col-lg-4">
-                <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
-                <h2>Heading</h2>
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                <img class="avatar mb-2" src="{{ asset('image/people/mark.png') }}" alt="">
+                <h2>Mark</h2>
+                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula
+                    porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
+                    ut fermentum massa justo sit amet risus.</p>
                 <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
@@ -92,11 +104,16 @@
 
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">First featurette heading. <span class="text-muted">It’ll blow your mind.</span></h2>
-                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                <h2 class="featurette-heading">All about the book. <span class="text-muted">Rational Optimist.</span>
+                </h2>
+                <p class="lead">The book of the renowned scientific journalist Matt Ridley, “Rational Optimist,” is
+                    dedicated to the idea that, despite the current crises and temporary regression, mankind has very
+                    good prospects. Progress is really good, and the world is as great a place to live as it has always
+                    been. Matt Ridley offers a simple answer to humanity on the most important questions, arguing that
+                    we go forward only when we act together and trust each other.</p>
             </div>
             <div class="col-md-5">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+                <img class="book_content_image" src="{{ asset('image/book_content/book-content1.png') }}" alt="">
             </div>
         </div>
 
@@ -104,11 +121,19 @@
 
         <div class="row featurette">
             <div class="col-md-7 order-md-2">
-                <h2 class="featurette-heading">Oh yeah, it’s that good. <span class="text-muted">See for yourself.</span></h2>
-                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                <h2 class="featurette-heading">All about the book. <span
+                        class="text-muted">Genome. View autobiography</span></h2>
+                <p class="lead">Genetics is developing rapidly. Its development is often compared to revolution. Not
+                    only the general public, but also specialists have no time to keep track of how our ideas about life
+                    and heredity are changing. This generates a lot of rumors and speculation about the terrible mutants
+                    that insidious scientists stamp in their laboratories, while the astounding discoveries of new
+                    methods for diagnosing and treating genetic diseases, including cancer, go unnoticed or
+                    misunderstood. Matt Ridley's book is very relevant. Simple and accessible, the author presented the
+                    history of genetics from the first guesses to the stunning breakthrough that began with the
+                    discovery of the DNA structure by Watson and Crick.</p>
             </div>
             <div class="col-md-5 order-md-1">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+                <img class="book_content_image" src="{{ asset('image/book_content/book-content2.png') }}" alt="">
             </div>
         </div>
 
@@ -116,11 +141,17 @@
 
         <div class="row featurette">
             <div class="col-md-7">
-                <h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-                <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+                <h2 class="featurette-heading">All about the book. <span class="text-muted">The Origin of Altruism and Virtue.</span>
+                </h2>
+                <p class="lead">The new book of the famous scientist and journalist Matt Ridley “The Origin of Altruism
+                    and Virtue” contains a review and generalization of everything that has become known about the
+                    social behavior of a person over thirty years. One of the main objectives of his book is “to help
+                    people take a look from the side at our biological species with all its weaknesses and
+                    shortcomings.” Ridley criticizes the well-known model, which claims that in the formation of human
+                    behavior, culture almost completely supplants biology.</p>
             </div>
             <div class="col-md-5">
-                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+                <img class="book_content_image" src="{{ asset('image/book_content/book-content3.png') }}" alt="">
             </div>
         </div>
 

@@ -42,4 +42,8 @@ class User extends Authenticatable
         // Книга пренадлежит пользователю.
         return $this->belongsTo(BookPost::class);
     }
+
+    public function isAdmin() {
+        return $this->isadmin == 1;
+    }
 }

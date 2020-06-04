@@ -35,7 +35,7 @@
                         @csrf
                     <div class="card card-block">
                         <div class="card-body ml-auto">
-                            <button type="submit" class="btn btn-link">Удалить</button>
+                            <button type="submit" class="btn btn-primary">Delete</button>
                         </div>
                     </div>
                     </form>

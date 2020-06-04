@@ -6,6 +6,7 @@ use App\Models\BookCategory;
 use App\Models\BookPost;
 use App\Observers\BookCategoryObserver;
 use App\Observers\BookPostObserver;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -29,5 +30,6 @@ class AppServiceProvider extends ServiceProvider
     {
         BookCategory::observe(BookCategoryObserver::class);
         BookPost::observe(BookPostObserver::class);
+        Schema::defaultStringLength(191);
     }
 }

@@ -39,7 +39,8 @@ class PostController extends BaseController
      */
     public function index()
     {
-        $paginator = BookPost::paginate(15);
+        $paginator = $this->bookPostRepository->getAllWithPaginate();
+        //$paginator = BookPost::paginate(15);
         return view('book.admin.posts.index', compact('paginator'));
     }
 
@@ -70,10 +71,10 @@ class PostController extends BaseController
         if ($item){
             return redirect()
                 ->route('book.admin.posts.edit', $item->id)
-                ->with(['success' => 'Успешно сохранено']);
+                ->with(['success' => 'Saved successfully']);
         }else{
             return back()
-                ->withErrors(['msg' => 'Ошибка сохранения'])
+                ->withErrors(['msg' => 'Save error'])
                 ->withInput();
         }
     }
@@ -107,7 +108,7 @@ class PostController extends BaseController
         $item = $this->bookPostRepository->getEdit($id);
         if(empty($item)){
             return back()
-                ->withErrors(['msg' => "Запись с id: [{$id}] не найдена"])
+                ->withErrors(['msg' => "Record with id: [{$id}] not found"])
                 ->withInput();
         }
 
@@ -118,10 +119,10 @@ class PostController extends BaseController
         if ($result){
             return redirect()
                 ->route('book.admin.posts.edit', $item->id)
-                ->with(['success' => 'Успешно сохранено']);
+                ->with(['success' => 'Saved successfully']);
         }else{
             return back()
-                ->withErrors(['msg' => 'Ошибка сохранения'])
+                ->withErrors(['msg' => 'Save error'])
                 ->withInput();
         }
     }
@@ -140,11 +141,11 @@ class PostController extends BaseController
             return redirect()
                 ->route('book.admin.posts.index')
                 ->with(['success' =>
-                    "Книга с ID: $id удалена",
+                    "Book ID: $id deleted",
                     'restore'    => $id]
                     );
         }else{
-            return back()->withErrors(['msg' => 'Ошибка удаления']);
+            return back()->withErrors(['msg' => 'Delete error']);
         }
     }
     public function restore($id)
@@ -154,9 +155,9 @@ class PostController extends BaseController
         if ($restore) {
             return redirect()
                 ->route('book.admin.posts.edit', $id)
-                ->with(['success' => "Книга с ID: $id восстановлена"]);
+                ->with(['success' => "Book with ID: $id restored"]);
         }else{
-            return back()->withErrors(['msg' => 'Ошибка восстановления']);
+            return back()->withErrors(['msg' => 'Recovery error']);
         }
     }
 }

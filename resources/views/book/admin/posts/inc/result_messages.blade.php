@@ -23,7 +23,7 @@
                 </button>
                 {{ session()->get('success') }}
                 @if(session('restore'))
-                    <a href='{{ route('book.admin.posts.restore',session()->get('restore')) }}'>Восстановить книгу</a>
+                    <a href='{{ route('book.admin.posts.restore',session()->get('restore')) }}'> restore book</a>
                 @endif
             </div>
         </div>

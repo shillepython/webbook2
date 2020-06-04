@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\BookPost;
 use App\Models\BookPost as Model;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
@@ -36,6 +37,7 @@ class BookPostRepository extends CoreRepository
             'excerpt',
             'is_published',
             'published_at',
+            'price',
             'created_at',
             'user_id',
             'category_id'
@@ -57,6 +59,11 @@ class BookPostRepository extends CoreRepository
      *
      */
 
+    public function findBook($slug)
+    {
+        return $this->startConditions()->find($slug);
+    }
+
     public function getEdit($id)
     {
         return $this->startConditions()->find($id);
@@ -71,8 +78,30 @@ class BookPostRepository extends CoreRepository
         if($request->has('title')){
             $bookQuery->where('title', 'like', "%$request->title%");
         }
+        if($request->has('price_before') && $request->has('price_before') != 0){
+            $bookQuery->where('price', ">=",$request->price_before);
+        }
+        if($request->has('price_after') && $request->has('price_after') != 0){
+            $bookQuery->where('price', "<=" ,$request->price_after);
+        }
         if($request->has('parent_id')){
             $bookQuery->where('category_id', 'like', "%$request->parent_id%");
+        }
+        if($request->has('published_at')){
+            if ($request->published_at == "newest"){
+                $bookQuery->latest();
+            }
+            if ($request->published_at == "oldest"){
+                $bookQuery->oldest();
+            }
+        }
+        if($request->has('price_order')){
+            if ($request->price_order == "expensive"){
+                $bookQuery->orderBy('price', 'desc')->get();
+            }
+            if ($request->price_order == "сheapest"){
+                $bookQuery->orderBy('price', 'asc')->get();
+            }
         }
     }
 }

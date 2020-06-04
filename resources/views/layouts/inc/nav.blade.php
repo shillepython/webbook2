@@ -6,11 +6,19 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{{route('welcome')}}">Главная <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ route('welcome') }}">Main <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{url('book')}}">Все книги</a>
+                <a class="nav-link" href="{{ url('book') }}">All book</a>
             </li>
+            @if(Auth::user()->isAdmin())
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('book.admin.posts.index') }}">Post Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('book.admin.categories.index') }}">Category Admin</a>
+            </li>
+            @endif
         </ul>
         <ul class="navbar-nav ml-auto">
             <!-- Authentication Links -->
@@ -30,6 +38,8 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('profile') }}">Profile</a>
+
                         <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
